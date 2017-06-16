@@ -1,0 +1,21 @@
+<div class="row">
+  <legend class="col-9">{{count}} {{selectedType}}s </legend>
+</div>
+<table class="table table-hover">
+  <thead class="thead-default">
+    <tr>
+      <th>Scouts name</th>
+      <th>Member No</th>
+      <th>Scouts parents</th>
+      <th>EmailAddress</th>
+      <th>Phone Number</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let scout of list" (click)="gotoDetail(scout)">
+      <td>{{scout.first}} {{scout.last}}</td>
+      <td>{{scout.memberNumber}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,29 @@
+<form name='feeForm' (ngSubmit)="submit()" #feeForm="ngForm">
+
+  <table class="table table-hover">
+    <thead class="thead-default">
+      <tr>
+        <th>Fee</th>
+        <th>Cost</th>
+        <th>Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fee of list">
+        <td>
+          <input type="text" class="form-control" id='description' name='description' placeholder="Fee description" #description='ngModel'
+            [(ngModel)]='fee.description' required>
+          <span class="alert alert-danger" [hidden]="description.valid || description.pristine">please complete description.</span>
+        </td>
+        <td>
+          <input type="number" class="form-control" id='cost' name='cost' placeholder="Current cost" #cost='ngModel' [(ngModel)]='fee.currentCost'
+            required>
+          <span class="alert alert-danger" [hidden]="cost.valid || cost.pristine">please complete cost.</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" class="btn" [disabled]="disableAdd" (click)="add()"><i class="fa fa-plus"  ></i></button>
+  <button type="submit" class="btn btn-primary pull-right" [disabled]="!feeForm.valid">Apply</button>
+</form>

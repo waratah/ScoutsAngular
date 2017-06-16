@@ -1,0 +1,8 @@
+<div class="form-group row" *ngFor="let st of scoutTypes | async">
+  <div class='col-5'>
+    <a class='btn btn-primary' routerLink="/list/{{st.value}}" routerLinkActive="active">{{st.name}}</a>
+  </div>
+  <div class='col-5'>
+    <a class="btn btn-info" routerLink="/emails/{{st.value}}" routerLinkActive="active">Emails</a>
+  </div>
+</div>

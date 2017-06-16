@@ -1,0 +1,29 @@
+<form name='paymentForm' (ngSubmit)="submit()" #paymentForm="ngForm">
+
+  <table class="table table-hover">
+    <thead class="thead-default">
+      <tr>
+        <th>payment</th>
+        <th>Cost</th>
+        <th>Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of list">
+        <td>
+          <input type="text" class="form-control" id='description' name='description' placeholder="payment description" #description='ngModel'
+            [(ngModel)]='payment.description' required>
+          <span class="alert alert-danger" [hidden]="description.valid || description.pristine">please complete description.</span>
+        </td>
+        <td>
+          <input type="number" class="form-control" id='cost' name='cost' placeholder="Current cost" #cost='ngModel' [(ngModel)]='payment.currentCost'
+            required>
+          <span class="alert alert-danger" [hidden]="cost.valid || cost.pristine">please complete cost.</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" class="btn" [disabled]="disableAdd" (click)="add()"><i class="fa fa-plus"  ></i></button>
+  <button type="submit" class="btn btn-primary pull-right" [disabled]="!paymentForm.valid">Apply</button>
+</form>

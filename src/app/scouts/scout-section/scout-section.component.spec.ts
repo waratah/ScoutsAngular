@@ -1,22 +1,38 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
+
 import { ScoutSectionComponent } from './scout-section.component';
-import { MockScoutsService } from "../mocks/MockScoutsService";
-import { ScoutsService } from "../services/scouts.service";
+import { ScoutService } from '../../services/scout.service';
+
+const scoutSvc: any = {
+  Fees: () => {
+    const fees = [{
+      currentCost: 45,
+      description: 'shirt',
+      isActive: true,
+    },
+    {
+      currentCost: 100,
+      description: 'term fees',
+      isActive: true,
+    }];
+    return of(fees);
+  },
+};
+
 
 describe('ScoutSectionComponent', () => {
   let component: ScoutSectionComponent;
   let fixture: ComponentFixture<ScoutSectionComponent>;
-  let scoutsvc = new MockScoutsService();
-
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ScoutSectionComponent],
-      providers: [
-        { provide: ScoutsService, useValue: scoutsvc },
-      ]
+      declarations: [ ScoutSectionComponent,],
+      imports: [RouterTestingModule.withRoutes([])],
+      providers: [ { provide: ScoutService, useValue: scoutSvc }, ],
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {

@@ -10,23 +10,13 @@ import { ScoutListComponent } from './scout-list/scout-list.component';
 import { ScoutMenuComponent } from './scout-menu/scout-menu.component';
 import { ScoutSectionComponent } from './scout-section/scout-section.component';
 
-import { ScoutsService } from "app/scouts/services/scouts.service";
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ScoutsRoutingModule
-  ],
-  providers: [
-    ScoutsService,
-  ],
 
-  declarations: [ScoutListComponent,
-    EmailListComponent,
-    ScoutDetailComponent,
-    ScoutSectionComponent,
-    ScoutMenuComponent
-  ]
+    ScoutsRoutingModule,
+  ],
+  declarations: [EmailListComponent, ScoutDetailComponent, ScoutListComponent, ScoutMenuComponent, ScoutSectionComponent]
 })
 export class ScoutsModule { }

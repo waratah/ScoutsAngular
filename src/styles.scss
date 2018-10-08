@@ -1,0 +1,19 @@
+@import 'variables';
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+
+.navspacer {
+    padding: 15px;
+}
+
+.breakany {
+  -ms-word-break: break-all;
+  word-break: break-all;
+
+  /* Non standard for webkit */
+  word-break: break-word;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}

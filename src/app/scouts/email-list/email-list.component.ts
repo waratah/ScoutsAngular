@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+import { switchMap } from 'rxjs/operators';
 
-import { ScoutsService } from "../services/scouts.service";
-
-import { ScoutType } from "../../enums/ScoutType";
-import { ScoutEmail } from "app/interfaces/scoutEmail";
+import { ScoutEmail } from '../../interfaces/scoutEmail';
+import { ScoutType } from '../../enums/scoutType';
+import { ScoutService } from '../../services/scout.service';
 
 @Component({
   selector: 'app-email-list',
   templateUrl: './email-list.component.html',
-  styleUrls: ['./email-list.component.css']
+  styleUrls: ['./email-list.component.scss']
 })
 export class EmailListComponent implements OnInit {
 
@@ -20,19 +19,20 @@ export class EmailListComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private scouts: ScoutsService
+    private scouts: ScoutService
   ) { }
 
   ngOnInit() {
     this.route.params
-      .switchMap((params: Params) => this.scouts.LoadEmails(+params['scoutType']))
+    .pipe(
+      switchMap((params: Params) => this.scouts.LoadEmails(+params['scoutType'])))
       .subscribe(emails => {
         this.list = emails;
         this.text = emails.join(',');
       });
   }
+
   gotoDetail(scout: ScoutEmail): void {
     this.router.navigate(['/detail', scout.scoutId]);
   }
-
 }

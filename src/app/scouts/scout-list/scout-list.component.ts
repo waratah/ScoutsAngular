@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
-import { ScoutType } from "../../enums/ScoutType";
-import { ScoutList } from "../../interfaces/scoutList";
-import { ScoutsService } from "../services/scouts.service";
+import { ScoutService } from '../../services/scout.service';
+import { ScoutList } from '../../interfaces/scoutList';
+import { ScoutType } from '../../enums/scoutType';
 
 @Component({
   selector: 'app-scout-list',
   templateUrl: './scout-list.component.html',
-  styleUrls: ['./scout-list.component.css']
+  styleUrls: ['./scout-list.component.scss']
 })
 export class ScoutListComponent implements OnInit {
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private scouts: ScoutsService
+    private scouts: ScoutService
   ) { }
 
   list: ScoutList[];
@@ -24,11 +25,11 @@ export class ScoutListComponent implements OnInit {
 
   ngOnInit() {
     this.route.params
-      .switchMap((params: Params) => {
+      .pipe(switchMap((params: Params) => {
         this.selectedType = ScoutType[+params['scoutType']];
         return this.scouts
           .LoadScouts(+params['scoutType'], false)
-      })
+      }))
       .subscribe(scoutList => {
         this.list = scoutList;
         this.count = this.list.length;

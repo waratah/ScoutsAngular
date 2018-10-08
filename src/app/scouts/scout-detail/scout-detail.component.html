@@ -1,80 +1,80 @@
 <form class="form-horizontal" name='scoutForm' (ngSubmit)="submit()" #scoutForm="ngForm">
-    <div class="form-group row">
-        <legend class="col-8 ">{{scout.firstName}} {{scout.lastName}}</legend>
-        <button type="button" class="btn col-1 offset-1" routerLink="/list/{{scout.section}}">To {{section}} list <i class="fa fa-return"></i></button>
-    </div>
-    <div class="alert alert-warning" role="alert" *ngIf="scout.balance > 0">
-        <strong>Warning</strong> Not financial.
-    </div>
-    <div class="form-group row">
-        <label for='first' class="col-2 col-form-label">First name</label>
-        <div class="col-9">
-            <input type="text" class="form-control" placeholder="First name" name="first" #firstName='ngModel' [(ngModel)]='scout.firstName'
-                required />
-            <span class="alert alert-danger" [hidden]="firstName.valid || firstName.pristine">please complete the first name.</span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for='second' class="col-2 col-form-label">Surname</label>
-        <div class="col-9">
-            <input type="text" class="form-control" placeholder="second name" name='second' #secondName='ngModel' [(ngModel)]='scout.lastName'
-                required />
-            <span class="alert alert-danger" [hidden]="secondName.valid || secondName.pristine">please complete the surname.</span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for='active' class="col-2 col-form-label">Is active member</label>
-        <div class="col-9">
-            <input type="checkbox" name='active' #active='ngModel' [(ngModel)]='scout.active' />
-            <span class="alert alert-danger" [hidden]="active.valid || active.pristine">Is this scout active.</span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for='semail' class="col-2 col-form-label">primary email</label>
-        <div class="col-9">
-            <input type="email" class="form-control" placeholder="Email address" name='semail' #semail='ngModel' [(ngModel)]='scout.email'
-            />
-            <span class="alert alert-danger" [hidden]="semail.valid || semail.pristine">please complete the contact email.</span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for='scoutno' class="col-2 col-form-label">Membership number</label>
-        <div class="col-9">
-            <input type="text" class="form-control pull-left" placeholder="Scout number" name='scoutno' #scoutno='ngModel' [(ngModel)]='scout.memberNumber'
-            />
-            <span class="alert alert-danger" [hidden]="scoutno.valid || scoutno.pristine">please complete the scout membership.</span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for='dob' class="col-2 col-form-label">Date of birth</label>
-        <div class="col-9">
-            <input type="date" class="form-control" placeholder="Date of birth" name='dob' #dob='ngModel' [(ngModel)]='scout.dOB' />
-            <span class="alert alert-danger" [hidden]="dob.valid || dob.pristine">please complete the date of birth.</span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for='startDate' class="col-2 col-form-label">Start date</label>
-        <div class="col-9">
-            <input type="date" class="form-control" placeholder="Start date" name='startdate' #startdate='ngModel' [(ngModel)]='scout.startDate'
-            />
-            <span class="alert alert-danger" [hidden]="startdate.valid || startdate.pristine">please complete the start date.</span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for='enddate' class="col-2 col-form-label">End date</label>
-        <div class="col-9">
-            <input type="date" class="form-control" placeholder="Date left movement" name='enddate' #enddate='ngModel' [(ngModel)]='scout.endDate'
-            />
-            <span class="alert alert-danger" [hidden]="enddate.valid || enddate.pristine">please complete the end date.</span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for='dob' class="col-2 col-form-label">Section</label>
-        <div class="col-9">
-            <app-scout-section [scoutType]="scout.section"></app-scout-section>
-        </div>
-    </div>
-    <div class="form-group row">
-        <button class="btn btn-default" [disabled]="scoutForm.valid">Apply</button>
-    </div>
+  <div class="form-group row">
+      <legend class="col-8 ">{{scout.firstName}} {{scout.lastName}}</legend>
+      <button type="button" class="btn col-1 offset-1" routerLink="/list/{{scout.section}}">To {{section}} list <i class="fa fa-return"></i></button>
+  </div>
+  <div class="alert alert-warning" role="alert" *ngIf="scout.balance > 0">
+      <strong>Warning</strong> Not financial.
+  </div>
+  <div class="form-group row">
+      <label for='first' class="col-2 col-form-label">First name</label>
+      <div class="col-9">
+          <input type="text" class="form-control" placeholder="First name" name="first" #firstName='ngModel' [(ngModel)]='scout.firstName'
+              required />
+          <span class="alert alert-danger" [hidden]="firstName.valid || firstName.pristine">please complete the first name.</span>
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for='second' class="col-2 col-form-label">Surname</label>
+      <div class="col-9">
+          <input type="text" class="form-control" placeholder="second name" name='second' #secondName='ngModel' [(ngModel)]='scout.lastName'
+              required />
+          <span class="alert alert-danger" [hidden]="secondName.valid || secondName.pristine">please complete the surname.</span>
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for='active' class="col-2 col-form-label">Is active member</label>
+      <div class="col-9">
+          <input type="checkbox" name='active' #active='ngModel' [(ngModel)]='scout.active' />
+          <span class="alert alert-danger" [hidden]="active.valid || active.pristine">Is this scout active.</span>
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for='semail' class="col-2 col-form-label">primary email</label>
+      <div class="col-9">
+          <input type="email" class="form-control" placeholder="Email address" name='semail' #semail='ngModel' [(ngModel)]='scout.email'
+          />
+          <span class="alert alert-danger" [hidden]="semail.valid || semail.pristine">please complete the contact email.</span>
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for='scoutno' class="col-2 col-form-label">Membership number</label>
+      <div class="col-9">
+          <input type="text" class="form-control pull-left" placeholder="Scout number" name='scoutno' #scoutno='ngModel' [(ngModel)]='scout.memberNumber'
+          />
+          <span class="alert alert-danger" [hidden]="scoutno.valid || scoutno.pristine">please complete the scout membership.</span>
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for='dob' class="col-2 col-form-label">Date of birth</label>
+      <div class="col-9">
+          <input type="date" class="form-control" placeholder="Date of birth" name='dob' #dob='ngModel' [(ngModel)]='scout.dOB' />
+          <span class="alert alert-danger" [hidden]="dob.valid || dob.pristine">please complete the date of birth.</span>
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for='startDate' class="col-2 col-form-label">Start date</label>
+      <div class="col-9">
+          <input type="date" class="form-control" placeholder="Start date" name='startdate' #startdate='ngModel' [(ngModel)]='scout.startDate'
+          />
+          <span class="alert alert-danger" [hidden]="startdate.valid || startdate.pristine">please complete the start date.</span>
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for='enddate' class="col-2 col-form-label">End date</label>
+      <div class="col-9">
+          <input type="date" class="form-control" placeholder="Date left movement" name='enddate' #enddate='ngModel' [(ngModel)]='scout.endDate'
+          />
+          <span class="alert alert-danger" [hidden]="enddate.valid || enddate.pristine">please complete the end date.</span>
+      </div>
+  </div>
+  <div class="form-group row">
+      <label for='dob' class="col-2 col-form-label">Section</label>
+      <div class="col-9">
+          <app-scout-section [scoutType]="scout.section"></app-scout-section>
+      </div>
+  </div>
+  <div class="form-group row">
+      <button class="btn btn-default" [disabled]="scoutForm.valid">Apply</button>
+  </div>
 </form>

@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { ScoutsService } from '../services/scouts.service';
-import { EnumElement } from 'app/interfaces/enumelement';
-import { Observable } from 'rxjs/Observable';
+import { ScoutService } from '../../services/scout.service';
+import { EnumElement } from '../../interfaces/enumElement';
 
 @Component({
   selector: 'app-scout-menu',
   templateUrl: './scout-menu.component.html',
-  styleUrls: ['./scout-menu.component.css']
+  styleUrls: ['./scout-menu.component.scss']
 })
 export class ScoutMenuComponent implements OnInit {
-  constructor(private scouts: ScoutsService) { }
+
+  constructor(private scouts: ScoutService) { }
 
   scoutTypes: Observable<EnumElement[]>;
 
   ngOnInit() {
     this.scoutTypes = this.scouts.ScoutTypes;
-  };
+  }
 }

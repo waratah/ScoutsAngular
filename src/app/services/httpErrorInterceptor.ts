@@ -26,6 +26,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    return next.handle(req);
     // exempt some paths from authentication
     if (req.headers.get('authExempt') === 'true') {
       return next.handle(req);
@@ -35,6 +36,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
     if (!this.inflightAuthRequest) {
       this.inflightAuthRequest = authService.getToken();
+      if (!this.inflightAuthRequest) {
+        return next.handle(req);
+      }
     }
 
     return this.inflightAuthRequest.pipe(

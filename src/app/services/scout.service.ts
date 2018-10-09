@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
@@ -17,27 +17,41 @@ import { ScoutDetail } from '../interfaces/scoutDetail';
 })
 export class ScoutService {
 
-  public ScoutTypes: Observable<EnumElement[]>;
+  public get ScoutTypes(): Observable<EnumElement[]> {
+    return this._scoutTypeSubject.asObservable()
+  };
+
+  private _scoutTypeSubject = new BehaviorSubject<EnumElement[]>([
+    { value: 1, name: 'Joey' },
+    { value: 2, name: 'Cub' },
+    { value: 3, name: 'Scout' },
+    { value: 4, name: 'Venturer' },
+    { value: 5, name: 'Rover' },
+    { value: 6, name: 'Leader' },
+    { value: 7, name: 'Parent Helper' },
+  ])
 
   constructor(private http: HttpClient) {
-    this.ScoutTypes = this.LoadScoutTypes();
+    this.LoadScoutTypes();
   }
 
-  public LoadScoutTypes(): Observable<EnumElement[]> {
-    return this.http
-      .get<EnumElement[]>(environment.api + 'scoutType');
+  public LoadScoutTypes() {
+    this.http
+      .get<EnumElement[]>(environment.api + 'scoutType')
+      .subscribe(x => this._scoutTypeSubject.next(x),
+        error => console.error(error)
+      );
   }
-
 
   public LoadScouts(type: ScoutType, includeDeleted: boolean): Observable<ScoutList[]> {
-    const url = environment.api + 'scoutsummary/' + type;
+    const url = environment.api + 'scoutSummary/' + type;
     return this.http
       .get<ScoutList[]>(url);
   }
 
   public LoadEmails(type: ScoutType): Observable<ScoutEmail[]> {
     return this.http
-      .get<ScoutEmail[]>(environment.api + 'scoutsummary/emails/' + type);
+      .get<ScoutEmail[]>(environment.api + 'scoutSummary/emails/' + type);
 
   }
 
